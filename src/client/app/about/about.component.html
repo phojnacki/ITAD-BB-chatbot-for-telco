@@ -1,0 +1,41 @@
+Status: {{message}}
+<br>
+
+<button (click)="startGame()">Start</button>
+<button (click)="stopGame()">Stop</button>
+<button (click)="resetGame()">Reset</button>
+<button (click)="thx()">.</button>
+<div *ngIf="!displayThx">
+  <br>
+  <h1>http://itadtelco.alkiia.ath.bielsko.pl</h1>
+Konkurs polega na:
+  <ul>
+  <li>Wyświetleniu faktury za styczeń 2015</li>
+    <li>Wysłaniu SMS'a pod dowolny numer o dowolnej treści</li>
+      <li>Doładowaniu dowolnego numeru na dowolną kwotę</li>
+</ul>
+
+  <div *ngIf="players">
+    <h3><b>Nasze interakcje:</b></h3>
+
+    <div *ngFor="let player of players; let i = index">
+      <h4>{{i+1}}. <b>{{player.id}}</b>
+    <span *ngIf="player.recharge">
+      - doładowanie
+    </span>
+    <span *ngIf="player.sms">
+      - sms
+    </span>
+    <span *ngIf="player.invoice">
+      - faktura
+    </span></h4>
+    </div>
+  </div>
+</div>
+<div *ngIf="displayThx">
+  <h2>Dziękuję za uwagę.</h2>
+  <h2>Życzę owocnej konferencji <b>Bielsko-Biała ITAD'17</b></h2>
+  <h2>Przemysław Hojnacki</h2>
+  <h2>przemyslaw.hojnacki@gmail.com</h2>
+  <h2><a href="https://twitter.com/przemeck">https://twitter.com/przemeck</a></h2>
+</div>

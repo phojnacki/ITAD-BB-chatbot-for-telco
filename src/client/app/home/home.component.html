@@ -1,0 +1,61 @@
+<div *ngIf="!logged">
+  <br>
+    <input [(ngModel)]="nick" name="nick" placeholder="Nick">
+    <button id="connectButton" (click)="login()" type="submit">Login</button>
+  <br>
+    <p style="color: red"><i>{{loginMessage}}</i></p>
+</div>
+<div *ngIf="logged">
+    <p style="color: grey"><i>Zalogowany jako <b>{{nick}}</b></i></p>
+  <button (click)="start()">Proszę mówić tutaj</button>
+  <p style="color: grey"><i>{{userMessage}}</i></p>
+    <p style="color: red"><i>{{errorMessage}}</i></p>
+    <!--<p style="color: grey"><i>{{witTxt}}</i></p>-->
+    <!--<p style="color: grey"><i>{{contextTxt}}</i></p>-->
+    <!--<p style="color: grey"><i>intent: {{rootIntent}}</i></p>-->
+    <p *ngIf="completedTasksInfo" style="color: lightgreen"><i>{{completedTasksInfo}}</i></p>
+
+  <div *ngIf="!thx">
+    <div *ngIf="this.rootIntent == 'recharge'">
+      Doładowanie konta:<br>
+      <input [(ngModel)]="intentModel.phoneNumber"><br>
+      za<br>
+      <input [(ngModel)]="intentModel.amountOfMoney"> zł.<br>
+      Cyz potwierdzasz to doładowanie?
+      <!--<button (click)="confirmInput(phoneNumberModel)">Zatwierdzam</button>-->
+    </div>
+
+    <div *ngIf="this.rootIntent == 'sms'">
+      Wysłanie wiadomości tekstowej na numer<br>
+      <input [(ngModel)]="intentModel.phoneNumber"><br>
+      o treści<br>
+      <input [(ngModel)]="intentModel.smsContent"><br>
+      Czy potwierdzasz wysyłkę?
+      <!--<button (click)="confirmInput(phoneNumberModel)">Zatwierdzam</button>-->
+    </div>
+
+    <div *ngIf="rootIntent == 'invoice'">
+      Oto wyszukana faktura z miesiąca <b>{{intentModel.date}}</b>:
+      <div *ngIf="intentModel.invoiceNumber">
+        <img style="width: 33%" src="/assets/itadtelecom.png"/><br>
+        <h1>FAKTURA Nr: <b>{{intentModel.invoiceNumber}}</b></h1><br>
+        Data wystawienia: <b>{{intentModel.date}}.1</b><br>
+        Data zakończenia dostawy/usług: <b>{{intentModel.date}}.30</b><br>
+        Termin płatności:<b>{{intentModel.date}}.30</b><br>
+        Forma płatności: <b>Przelew</b><br>
+        <br>
+        WPLATA NA KONTO: <b>121450825401234001232065801</b>
+      </div>
+      <div *ngIf="!intentModel.invoiceNumber">
+        <h1>Taka faktura nie istnieje, podaj inną datę.</h1>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="thx">
+    <h1>Dziękuję za uwagę.</h1>
+    <h1>Życzę owocnej konferencji Bielsko-Białą ITAD'17</h1>
+    <h1>Przemysław Hojnacki</h1>
+    <h2>przemyslaw.hojnacki@gmail.com</h2>
+    <h2><a href="https://twitter.com/przemeck">https://twitter.com/przemeck</a></h2>
+  </div>
+</div>
